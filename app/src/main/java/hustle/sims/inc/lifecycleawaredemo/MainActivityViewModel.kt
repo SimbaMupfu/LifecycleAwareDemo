@@ -1,9 +1,10 @@
 package hustle.sims.inc.lifecycleawaredemo
 
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import java.util.*
 
-class MainActivityDataGenerator {
+class MainActivityViewModel: ViewModel() {
 
     private lateinit var myRandomNumber: String
 
@@ -22,7 +23,12 @@ class MainActivityDataGenerator {
         myRandomNumber = "Number: ${(random.nextInt(10 - 1) + 1)}"
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        Log.i(TAG, "ViewModel onCleared")
+    }
+
     companion object{
-        private val TAG : String = MainActivityDataGenerator::class.java.simpleName
+        private val TAG : String = MainActivityViewModel::class.java.simpleName
     }
 }

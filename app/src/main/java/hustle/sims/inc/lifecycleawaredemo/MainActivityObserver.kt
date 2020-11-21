@@ -1,11 +1,14 @@
 package hustle.sims.inc.lifecycleawaredemo
 
 import android.util.Log
+import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
 class MainActivityObserver: LifecycleObserver {
+
+    lateinit var model: MainActivityViewModel
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(){
