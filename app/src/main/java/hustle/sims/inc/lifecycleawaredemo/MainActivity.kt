@@ -3,14 +3,28 @@ package hustle.sims.inc.lifecycleawaredemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var model: MainActivityViewModel
+    lateinit var numberTV : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Log.i(TAG, "Owner onCreate")
         lifecycle.addObserver(MainActivityObserver())
+
+        numberTV = findViewById(R.id.tvNumber)
+
+        model = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        val myRandomNumber = model.getNumber()
+        numberTV.text = myRandomNumber
+
+        Log.i(TAG, "Random number set")
     }
 
     override fun onStart() {

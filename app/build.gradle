@@ -42,6 +42,8 @@ dependencies {
 
     //lifecycle libraries
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
