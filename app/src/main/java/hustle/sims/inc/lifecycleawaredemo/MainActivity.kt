@@ -3,13 +3,17 @@ package hustle.sims.inc.lifecycleawaredemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var model: MainActivityViewModel
     lateinit var numberTV : TextView
+    lateinit var bRandom : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,12 +23,21 @@ class MainActivity : AppCompatActivity() {
         lifecycle.addObserver(MainActivityObserver())
 
         numberTV = findViewById(R.id.tvNumber)
+        bRandom = findViewById(R.id.bRandom)
 
         model = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
         val myRandomNumber = model.getNumber()
-        numberTV.text = myRandomNumber
 
-        Log.i(TAG, "Random number set")
+        myRandomNumber.observe(this, Observer<String> { number->
+            numberTV.text = number
+
+            Log.i(TAG, "Random number set")
+        })
+
+        bRandom.setOnClickListener{
+            model.createNumber()
+        }
+
     }
 
     override fun onStart() {

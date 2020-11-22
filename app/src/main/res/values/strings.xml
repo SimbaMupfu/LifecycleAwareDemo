@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LifecycleAwareDemo</string>
+    <string name="fetch">fetch</string>
+    <string name="number">Number</string>
 </resources>
